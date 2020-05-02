@@ -1,0 +1,210 @@
+\documentclass[11pt]{beamer}
+\usetheme{Szeged}
+\usecolortheme{spruce}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{csquotes}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[style=apa, backend=biber, natbib=true, hyperref=true, uniquelist=false, sortcites]{biblatex}
+\DeclareLanguageMapping{spanish}{spanish-apa}
+\addbibresource{bibliografia/bibliografia.bib}
+\usepackage{graphicx}
+\graphicspath{{imagenes/}}
+\usepackage{multicol}
+\usepackage{paralist}
+\author{Juan Enrique García González}
+\title{Abolition of Slavery in the US and its effects on Agricultural Output}
+%\setbeamercovered{transparent} 
+%\setbeamertemplate{navigation symbols}{} 
+%\logo{\includegraphics[scale=0.3]{Portada_Logo}} 
+\institute{Universidad Carlos III de Madrid} 
+\date{September 2019} 
+\subject{Bachelor thesis presentation}
+\beamertemplatenavigationsymbolsempty
+
+\begin{document}
+
+\begin{frame}%[plain]
+\titlepage
+\end{frame}
+
+\section*{Contents of the presentation}
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+%\begin{frame}{Contents of the presentation}
+%
+%The outline of the presentation will be the following:
+%
+%
+%\begin{enumerate}
+%\item Introduction
+%\begin{enumerate}
+%\item Motivation for this work
+%\item Revision of the literature
+%\end{enumerate}
+%\item Methodology
+%\begin{enumerate}
+%\item Data
+%\item Estimation
+%\end{enumerate}
+%\item Results
+%\begin{enumerate}
+%\item Countrywide effects
+%\item Heterogeneous treatment effects
+%\item Robustness check
+%\end{enumerate}
+%\item Conclusion
+%\item References of the work
+%\end{enumerate}
+%\end{frame}
+
+\section{Introduction}
+\subsection{Motivation for this work}
+\begin{frame}
+Slavery has been used for most of human history, specially in the agricultural sector. This was also the case with USA, which employed it intensively in the agricultural sector and eventually abolished it in 1865. 
+
+\vspace{\baselineskip}
+The effects of slavery and abolition can be still noticed nowadays. In fact, this is a matter of heavy debate in the economic history world, which is the motivation behind this thesis.
+\end{frame}
+
+\subsection{Revision of the literature}
+\begin{frame}
+In the context of slavery and economic effects there are two opposing views: one argues that the use of slavery had a positive effect in production and the other states that the effect was in fact negative in the production.
+\end{frame}
+
+\begin{frame}
+%For the first opinion, there are two main authors: Fogel and Engerman...
+Positive views of slavery on agricultural production come from the intuition that enslaved labor could be easily monitored and controlled, with larger freedom to allocate production inputs. Fogel and Engerman illustrate this situation with the "gang system" used in cotton plantations.
+
+\vspace{\baselineskip}
+Another point in favor of the efficiency statement is that the allocation freedom also extended to any kind of enslaved person, thus being able to use also women and children for other tasks which required less raw force and more detailed work, such as the manufacturing of tobacco.
+\end{frame}
+
+\begin{frame}
+The negative view on slavery effect comes from Wright, who argues that this method not only belonged to the agricultural sector, but it also was part of a deep rooted system, which helped differentiate substantially the South from the North and prevented it from adopting better production technologies.
+
+\vspace{\baselineskip}
+This also links with Wright's statement of advantageous slavery in colonial farming. The colonized land was relatively easier to prepare for intensive use with enslaved workhand and the owner of the property was also able to obtain maximum profits while risking very low. This helped shaped an agricultural system that eventually demonstrated being less competitive than its northern counterpart, based on family farms of free settlers.
+\end{frame}
+
+%\begin{frame}
+%Aside from the literature of slavery and agricultural production, the work also includes literature that deals with the effects of the Civil War. The two main articles used were \citet{feigenbaum2018capital}, \citet{murphy1993boys} and \citet{blanton2002they}.
+%\end{frame}
+
+\begin{frame}
+ \citet{feigenbaum2018capital} deal with the effect of the Civil War, focusing on the Sherman march, on the states of Georgia, North Carolina and South Carolina. The results brought by the study support the idea that in those territories the negative effect of the Civil War were not driven by human loses but capital loses.
+\end{frame}
+
+\begin{frame}
+	Two studies deal with the demographic composition of the armies. Although it is assumed that many adult males participated in the conflict, there are other parts of population less present in the common knowledge.
+	
+	\vspace{\baselineskip}
+	\citet{murphy1993boys} works with the participation of minors in the conflict, declaring that the numbers of children were indeed remarkable for a war. \citet{blanton2002they} in the other hand, explain the role of women in the conflict. Unfortunately, the unreliability of the numbers presented in this work makes it difficult to assume a significant effect on the war.
+\end{frame}
+
+\section{Methodology}
+\subsection{Data}
+\begin{frame}
+
+The data was obtained from \citet{nhgis} and it consists on agricultural and demographic data, including information about farming production, capital and different types of population.
+
+\vspace{\baselineskip}
+This data has a panel type format, using data from county levels which ranges from the years 1860 and 1870 . The source of this data is the US Census.
+\end{frame}
+
+\begin{frame}[shrink]
+The data retrieved for the variables in the regression is:
+%\begin{multicols}{2}
+%\begin{compactitem}
+\begin{itemize}
+\item Crop output: total agricultural output (in dollars)(AGOUT3), ratio of cotton per total agricultural production (COTTONRAT) and ratio of tobacco per total agricultural production (TOBACCORAT).
+\item Farm count: total number of farms per county (FARMS).
+\item Machine and improvements: value in dollars of machinery and improvements used in the agricultural work (MACHINE).
+\item Slave ratio: the ratio of slaves of all ages and sex per total population (SLAVRAT).
+\item Foreign ratio: the ratio of foreign population of all ages and sex per total population (FORRAT).
+\item Population growth: the population growth ratio of males older than 10 in 1860 and aged 21 in 1870 (to measure war casualties)(POPGROWTH).
+\end{itemize}
+
+%\end{compactitem}
+%\end{multicols}
+\end{frame}
+
+\subsection{Estimation}
+\begin{frame}
+The production is computed using a Diff-in-Diff model through a logarithmic Cobb-Douglas production function. It is estimated both using OLS and Fixed Effects (FE). The general formula is the following:
+\begin{block}{OLS equation}
+\begin{equation}
+ln(Y)_{i,j,t}=\beta_{0}+\beta_{1}SLAVES_{i,j}+\beta_{2}AMEN_{i,j,t}+\beta_{3}DID_{i,j,t}+\delta_{i,j,t}log(X)
+\end{equation}
+\end{block}
+\begin{block}{FE equation}
+\begin{equation}
+ln(Y)_{i,j,t}=\beta_{1}X_{i,j,t} + a_{i,j}
+\end{equation}
+\end{block}
+In both estimations the term $X$ refers to the explanatory variables, while in the FE the term $a_{i,j}$ refers to the unobserved effect.
+\end{frame}
+
+\section{Results}
+\subsection{Countrywide effects}
+\begin{frame}
+Here the DID estimators show in the OLS equation that the policy change had a positive effect ($\beta_{3}=0.279$) on total agricultural output, while negative ($\beta_{3}=-0.592$) in the FE equation. According to the literature, the estimation of the FE equation is preferred to the pooled OLS. 
+
+\vspace{\baselineskip}
+For the cotton and tobacco ratios, the effect of slavery abolition is also negative, with similar effects in both OLS and FE estimators ($\beta_{3}=-0.226$ in OLS and $\beta_{3}=-0.229$ in FE for cotton and $\beta_{3}=-0,050$ in OLS and $\beta_{3}=-0.023$ in FE for tobacco).
+
+\vspace{\baselineskip}
+In the case of slave use as a labor factor, all agricultural measurements show it had a positive effect, such as $\beta_{1}=0.940$ in total agricultural output, $\beta_{1}=0.756$ in cotton ratio and $\beta_{1}=0.085$ in tobacco ratio.
+\end{frame}
+
+\subsection{Heterogeneous treatment effects}
+\begin{frame}[allowframebreaks]
+In the heterogeneous treatment effect section the results follow the same analysis as in the previous section, while applying to the group which could be more affected by this policy change: the Southern States.
+
+\vspace{\baselineskip}
+Therefore, the equations used to estimate are the same as before, but this time only using the data belonging to the southern states ($j=1$).
+\end{frame}
+
+\begin{frame}
+Here are the following equations:
+\begin{block}{OLS equation}
+\begin{equation}
+ln(Y)_{i,1,t}=\beta_{0}+\beta_{1}SLAVES_{i,1}+\beta_{2}AMEN_{i,1,t}+\beta_{3}DID_{i,1,t}+\delta_{i,1,t}log(X)
+\end{equation}
+\end{block}
+\begin{block}{FE equation}
+\begin{equation}
+ln(Y)_{i,1,t}=\beta_{1}X_{i,1,t} + a_{i,1}
+\end{equation}
+\end{block}
+\end{frame}
+
+\begin{frame}
+The results in this section go in line with the previous results, with $\beta_{3}=-0.530$ in the total agricultural output, $\beta_{3}=-0.107$ in the cotton ratio and $\beta_{3}=-0.026$ in the tobacco ratio.
+
+\vspace{\baselineskip}
+For the use of slaves, all effects are positive, with a $\beta_{1}=1.611$ in total agricultural output, $\beta_{1}=0.810$ in the cotton ratio and $\beta_{1}=0.044$ in the tobacco ratio.
+
+\vspace{\baselineskip}
+As seen before, in any instance all effects of enslaved work are positive, and thus the abolition of slavery had a negative effect.
+\end{frame}
+
+\section{Conclusion}
+\begin{frame}
+As the results show, slavery did have a positive effect on slavery. The DID estimator confirms that slavery abolition had a negative effect on production while the enslaved workhand was more productive than other types of workers. This confirms the hypothesis of Engerman and Fogel, which maintains that slavery had an efficiency advantage.
+
+There is also the possibility that with the Civil War effects the results may be biased, but the estimation also showed that with the data available the effects were not sufficient to justify the bias.
+
+So in summary, the estimations show that the intuition of the slavery being more competitive than its free counterpart is correct.
+\end{frame}
+
+\section{References}
+\begin{frame}[allowframebreaks]
+\nocite{*}
+\printbibliography
+\end{frame}
+\end{document}
