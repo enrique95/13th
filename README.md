@@ -8,4 +8,4 @@ The first branch will contain also the .csv files for the agricultural and demog
 
 The second one contains only the script, as the spatial data and the environment is too big to host in github
 
-In the main branch there is a .tex file with the written thesis and beamer presentation
+In the main branch there is a .tex file with the written thesis, beamer presentation and also R environment for the data extraction
