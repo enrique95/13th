@@ -8,10 +8,6 @@ library(robustbase)
 install.packages("readr")
 install.packages("dplyr")
 library(dplyr)
-install.packages("broom")
-library(broom)
-install.packages("xtable")
-library(xtable)
 
 # Uploading the data
 library(readr)
@@ -29,10 +25,10 @@ data70ag=merge(data70ag1,data70ag2)
 remove("data60ag1","data60ag2","data70ag1","data70ag2")
 
 # Transforming and creating variables
-data60ag$FARMS=rowSums(data60ag[,c(30:36)])
-data60ag$FORATIO=(data60ag$AH5004+data60ag$AH5005+data60ag$AH5006)/data60ag$AG3001
-data70ag$FORATIO=data70ag$ALB002/data70ag$AJ3001
-data60ag$SLAVES=data60ag$AGU001/data60ag$AG3001
+data60ag$FARMS <- rowSums(data60ag[,c(30:36)])
+data60ag$FORATIO <- (data60ag$AH5004+data60ag$AH5005+data60ag$AH5006)/data60ag$AG3001
+data70ag$FORATIO <- data70ag$ALB002/data70ag$AJ3001
+data60ag$SLAVES <- data60ag$AGU001/data60ag$AG3001
 data60ag$SLAVES[is.na(data60ag$SLAVES)]<-0
 
 # Merging slave data in the 1870 dataframe
