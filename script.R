@@ -5,19 +5,14 @@ install.packages("stargazer")
 library(stargazer)
 install.packages("robustbase")
 library(robustbase)
-install.packages("readr")
 install.packages("dplyr")
 library(dplyr)
 
 # Uploading the data
-library(readr)
-data60ag1 <- read_csv("nhgis0020_ds13_1860_county.csv")
-library(readr)
-data60ag2 <- read_csv("nhgis0020_ds14_1860_county.csv")
-library(readr)
-data70ag1 <- read_csv("nhgis0020_ds16_1870_county.csv")
-library(readr)
-data70ag2 <- read_csv("nhgis0020_ds17_1870_county.csv")
+data60ag1 <- read.csv("https://raw.githubusercontent.com/enrique95/TFG/master/nhgis0020_ds13_1860_county.csv")
+data60ag2 <- read.csv("https://raw.githubusercontent.com/enrique95/TFG/master/nhgis0020_ds14_1860_county.csv")
+data70ag1 <- read.csv("https://raw.githubusercontent.com/enrique95/TFG/master/nhgis0020_ds16_1870_county.csv")
+data70ag2 <- read_csv("https://raw.githubusercontent.com/enrique95/TFG/master/nhgis0020_ds17_1870_county.csv")
 
 # Merging data
 data60ag=merge(data60ag1,data60ag2)
