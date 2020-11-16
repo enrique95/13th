@@ -15,8 +15,8 @@ data70ag1 <- read.csv("https://raw.githubusercontent.com/enrique95/TFG/master/nh
 data70ag2 <- read_csv("https://raw.githubusercontent.com/enrique95/TFG/master/nhgis0020_ds17_1870_county.csv")
 
 # Merging data
-data60ag=merge(data60ag1,data60ag2)
-data70ag=merge(data70ag1,data70ag2)
+data60ag <- merge(data60ag1,data60ag2)
+data70ag <- merge(data70ag1,data70ag2)
 remove("data60ag1","data60ag2","data70ag1","data70ag2")
 
 # Transforming and creating variables
@@ -27,35 +27,35 @@ data60ag$SLAVES <- data60ag$AGU001/data60ag$AG3001
 data60ag$SLAVES[is.na(data60ag$SLAVES)]<-0
 
 # Merging slave data in the 1870 dataframe
-SLAVES60=data60ag[,c(1:7,ncol(data60ag))]
-SLAVES60$YEAR=1870
-data70ag=merge(data70ag,SLAVES60)
+SLAVES60 <- data60ag[,c(1:7,ncol(data60ag))]
+SLAVES60$YEAR <- 1870
+data70ag <- merge(data70ag,SLAVES60)
 
 # Calculating the farm price index in 1860's level
 index70=112/77
 
 # Renaming variables in 1860 dataframe
-data60ag=rename(data60ag, STOT=AGU001)
-data60ag=rename(data60ag, TOTPOP=AG3001)
-data60ag$FORPOP=rowSums(data60ag[, c(23:25)])
-data60ag=rename(data60ag, LIVESTOCK=AGX001)
-data60ag=rename(data60ag, AGOUT2=AG2002)
-data60ag=rename(data60ag, AGOUT1=AG2001)
-data60ag=rename(data60ag, AGOUT3=AGQ001)
-data60ag$AMEN=0
-data60ag=rename(data60ag, MACHINE=AGV002)
+data60ag <- rename(data60ag, STOT=AGU001)
+data60ag <- rename(data60ag, TOTPOP=AG3001)
+data60ag$FORPOP <- rowSums(data60ag[, c(23:25)])
+data60ag <- rename(data60ag, LIVESTOCK=AGX001)
+data60ag <- rename(data60ag, AGOUT2=AG2002)
+data60ag <- rename(data60ag, AGOUT1=AG2001)
+data60ag <- rename(data60ag, AGOUT3=AGQ001)
+data60ag$AMEN <- 0
+data60ag <- rename(data60ag, MACHINE=AGV002)
 
 # Renaming variables in 1870 dataframe
-data70ag=rename(data70ag, TOTPOP=AJR001)
-data70ag=rename(data70ag, FORPOP=ALB002)
-data70ag=rename(data70ag, LIVESTOCK=AJZ001)
-data70ag=rename(data70ag, AGOUT3=AJX001)
-data70ag$LIVESTOCK=data70ag$LIVESTOCK/index70
-data70ag$AGOUT3=data70ag$AGOUT3/index70
-data70ag$AMEN=1
-data70ag=rename(data70ag, FARMS=AKP001)
-data70ag=rename(data70ag, MACHINE=AJV002)
-data70ag$MACHINE=data70ag$MACHINE/index70
+data70ag <- rename(data70ag, TOTPOP=AJR001)
+data70ag <- rename(data70ag, FORPOP=ALB002)
+data70ag <- rename(data70ag, LIVESTOCK=AJZ001)
+data70ag <- rename(data70ag, AGOUT3=AJX001)
+data70ag$LIVESTOCK <- data70ag$LIVESTOCK/index70
+data70ag$AGOUT3 <- data70ag$AGOUT3/index70
+data70ag$AMEN <- 1
+data70ag <- rename(data70ag, FARMS=AKP001)
+data70ag <- rename(data70ag, MACHINE=AJV002)
+data70ag$MACHINE <- data70ag$MACHINE/index70
 
 # Calculating population change
 data60ag$MALEPOP60=rowSums(data60ag[,c(40:51)])
