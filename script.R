@@ -12,7 +12,7 @@ library(dplyr)
 data60ag1 <- read.csv("https://raw.githubusercontent.com/enrique95/TFG/master/nhgis0020_ds13_1860_county.csv")
 data60ag2 <- read.csv("https://raw.githubusercontent.com/enrique95/TFG/master/nhgis0020_ds14_1860_county.csv")
 data70ag1 <- read.csv("https://raw.githubusercontent.com/enrique95/TFG/master/nhgis0020_ds16_1870_county.csv")
-data70ag2 <- read_csv("https://raw.githubusercontent.com/enrique95/TFG/master/nhgis0020_ds17_1870_county.csv")
+data70ag2 <- read.csv("https://raw.githubusercontent.com/enrique95/TFG/master/nhgis0020_ds17_1870_county.csv")
 
 # Merging data
 data60ag <- merge(data60ag1,data60ag2)
@@ -70,7 +70,7 @@ data70ag=merge(data70ag,MALEPOPGROWTH)
 rm(MALEPOPGROWTH60,MALEPOPGROWTH70)
 
 #Creating ratios of products over total production
-data60part <- read_csv("nhgis0023_ds13_1860_county.csv")
+data60part <- read.csv("https://raw.githubusercontent.com/enrique95/TFG/master/nhgis0023_ds13_1860_county.csv")
 data60ag=merge(data60ag,data60part)
 data60ag$WHEATRAT=data60ag$AG1001/data60ag$AGOUT3
 data60ag$RYERAT=data60ag$AG1002/data60ag$AGOUT3
@@ -105,7 +105,7 @@ data60ag$CANEMOLRAT=data60ag$AG1030/data60ag$AGOUT3
 data60ag$SORGHUMMOLRAT=data60ag$AG1031/data60ag$AGOUT3
 data60ag$BEESWAXRAT=data60ag$AG1032/data60ag$AGOUT3
 data60ag$HONEYRAT=data60ag$AG1033/data60ag$AGOUT3
-data70part <- read_csv("nhgis0023_ds16_1870_county.csv")
+data70part <- read.csv("https://raw.githubusercontent.com/enrique95/TFG/master/nhgis0023_ds16_1870_county.csv")
 data70ag=merge(data70ag,data70part)
 data70ag$WHEAT=data70ag$AJ1001+data70ag$AJ1002
 data70ag$WHEATRAT=(data70ag$WHEAT*1.04)/data70ag$AGOUT3
