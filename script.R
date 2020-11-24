@@ -129,7 +129,10 @@ datotalag=rbind(data60ag[common_cols],data70ag[common_cols])
 
 # Clasifying states
 datotalag$CSA=ifelse(datotalag$STATE%in%c("South Carolina","Mississippi", "Florida","Alabama","Georgia", "Louisiana", "Texas","Virginia","Arkansas","Tennessee","North Carolina", "Missouri", "Kentucky"),1,0)
-
+#try with CSA= datotalag$STATE%in%c("South Carolina","Mississippi", "Florida", 
+#"Alabama","Georgia", "Louisiana", "Texas","Virginia","Arkansas","Tennessee",
+#"North Carolina", "Missouri", "Kentucky")
+#and then subset in the model
 # Creating the interactions
 datotalag$SLADUM=ifelse(datotalag$SLAVES>0,1,0)
 datotalag$DID=datotalag$SLADUM*datotalag$AMEN
