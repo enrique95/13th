@@ -129,7 +129,10 @@ datotalag <- rbind(data60ag[common_cols],data70ag[common_cols])
 
 # Clasifying states
 datotalag$CSA=ifelse(datotalag$STATE%in%c("South Carolina","Mississippi", "Florida","Alabama","Georgia", "Louisiana", "Texas","Virginia","Arkansas","Tennessee","North Carolina", "Missouri", "Kentucky"),1,0)
-
+#try with CSA= datotalag$STATE%in%c("South Carolina","Mississippi", "Florida", 
+#"Alabama","Georgia", "Louisiana", "Texas","Virginia","Arkansas","Tennessee",
+#"North Carolina", "Missouri", "Kentucky")
+#and then subset in the model
 # Creating the interactions
 datotalag$SLADUM=ifelse(datotalag$SLAVES>0,1,0)
 datotalag$DID=datotalag$SLADUM*datotalag$AMEN
@@ -150,13 +153,14 @@ datotalag <- datotalag[is.finite(rowSums(datotalag[,c(8:ncol(datotalag))])),]
 
 #Linear models without population growth
 DIDRATNOPOP=lmrob(LAGOUT3~SLAVES+AMEN+DIDRAT+LMACHINE+LLIVESTOCK+LFARMS+FORATIO, data = datotalag)
-DIDRATCOTTONNOPOP=lm(COTTONRAT~SLAVES+AMEN+DIDRAT+LMACHINE+LLIVESTOCK+LFARMS+FORATIO, data = datotalag)
-DIDRATTOBACCONOPOP=lm(TOBACCORAT~SLAVES+AMEN+DIDRAT+LMACHINE+LLIVESTOCK+LFARMS+FORATIO, data = datotalag)
+DIDRATCOTTONNOPOP <- update(DIDRATNOPOP, COTTONRAT ~ .)
+DIDRATTOBACCONOPOP <- update(DIDRATNOPOP, TOBACCORAT ~ .)
+
 
 # Heterogeneity analysis in the south
 DIDRATSOUTHNOPOP=lm(LAGOUT3~SLAVES+AMEN+DIDRAT+LMACHINE+LLIVESTOCK+LFARMS+FORATIO, data = datotalag[datotalag$CSA==1,])
-DIDRATCOTTONSOUTHNOPOP=lm(COTTONRAT~SLAVES+AMEN+DIDRAT+LMACHINE+LLIVESTOCK+LFARMS+FORATIO, data = datotalag[datotalag$CSA==1,])
-DIDRATTOBACCOSOUTHNOPOP=lm(TOBACCORAT~SLAVES+AMEN+DIDRAT+LMACHINE+LLIVESTOCK+LFARMS+FORATIO, data = datotalag[datotalag$CSA==1,])
+DIDRATCOTTONSOUTHNOPOP <- update(DIDRATSOUTHNOPOP, COTTONRAT ~ .)
+DIDRATTOBACCOSOUTHNOPOP <- update(DIDRATSOUTHNOPOP, TOBACCORAT ~.)
 
 #--------
 
