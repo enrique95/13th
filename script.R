@@ -58,74 +58,74 @@ data70ag <- rename(data70ag, MACHINE=AJV002)
 data70ag$MACHINE <- data70ag$MACHINE/index70
 
 # Calculating population change
-data60ag$MALEPOP60=rowSums(data60ag[,c(40:51)])
-data70ag=rename(data70ag, MALEPOP70=AKH001)
-MALEPOPGROWTH60=data60ag[,c(1,3:7,74)]
-MALEPOPGROWTH70=data70ag[,c(1,3:7,21)]
-MALEPOPGROWTH=merge(MALEPOPGROWTH60,MALEPOPGROWTH70)
-MALEPOPGROWTH$POPGROWTH=log(MALEPOPGROWTH$MALEPOP70)-log(MALEPOPGROWTH$MALEPOP60)
-MALEPOPGROWTH=MALEPOPGROWTH[,c(1:6,9)]
-data60ag=merge(data60ag,MALEPOPGROWTH)
+data60ag$MALEPOP60 <- rowSums(data60ag[,c(40:51)])
+data70ag <- rename(data70ag, MALEPOP70=AKH001)
+MALEPOPGROWTH60 <- data60ag[,c(1,3:7,74)]
+MALEPOPGROWTH70 <- data70ag[,c(1,3:7,21)]
+MALEPOPGROWTH <- merge(MALEPOPGROWTH60,MALEPOPGROWTH70)
+MALEPOPGROWTH$POPGROWTH <- log(MALEPOPGROWTH$MALEPOP70)-log(MALEPOPGROWTH$MALEPOP60)
+MALEPOPGROWTH <- MALEPOPGROWTH[,c(1:6,9)]
+data60ag <- merge(data60ag,MALEPOPGROWTH)
 data70ag=merge(data70ag,MALEPOPGROWTH)
 rm(MALEPOPGROWTH60,MALEPOPGROWTH70)
 
 #Creating ratios of products over total production
 data60part <- read.csv("https://raw.githubusercontent.com/enrique95/TFG/master/nhgis0023_ds13_1860_county.csv")
-data60ag=merge(data60ag,data60part)
-data60ag$WHEATRAT=data60ag$AG1001/data60ag$AGOUT3
-data60ag$RYERAT=data60ag$AG1002/data60ag$AGOUT3
-data60ag$CORNRAT=data60ag$AG1003/data60ag$AGOUT3
-data60ag$OATRAT=data60ag$AG1004/data60ag$AGOUT3
-data60ag$RICERAT=data60ag$AG1005/data60ag$AGOUT3
-data60ag$TOBACCORAT=data60ag$AG1006/data60ag$AGOUT3
-data60ag$COTTONRAT=data60ag$AG1007/data60ag$AGOUT3
-data60ag$WOOLRAT=data60ag$AG1008/data60ag$AGOUT3
-data60ag$PEARAT=data60ag$AG1009/data60ag$AGOUT3
-data60ag$IRPOTATORAT=data60ag$AG1010/data60ag$AGOUT3
-data60ag$SWPOTATORAT=data60ag$AG1011/data60ag$AGOUT3
-data60ag$BARLEYRAT=data60ag$AG1012/data60ag$AGOUT3
-data60ag$BUCKWHEATRAT=data60ag$AG1013/data60ag$AGOUT3
-data60ag$WINERAT=data60ag$AG1014/data60ag$AGOUT3
-data60ag$BUTTERRAT=data60ag$AG1015/data60ag$AGOUT3
-data60ag$CHEESERAT=data60ag$AG1016/data60ag$AGOUT3
-data60ag$HAYRAT=data60ag$AG1017/data60ag$AGOUT3
-data60ag$CLOVERRAT=data60ag$AG1018/data60ag$AGOUT3
-data60ag$GRASSRAT=data60ag$AG1019/data60ag$AGOUT3
-data60ag$HOPSRAT=data60ag$AG1020/data60ag$AGOUT3
-data60ag$DEWHEMPRAT=data60ag$AG1021/data60ag$AGOUT3
-data60ag$WATERHEMPRAT=data60ag$AG1022/data60ag$AGOUT3
-data60ag$OTHERHEMPRAT=data60ag$AG1023/data60ag$AGOUT3
-data60ag$FLAXRAT=data60ag$AG1024/data60ag$AGOUT3
-data60ag$FLAXSEEDRAT=data60ag$AG1025/data60ag$AGOUT3
-data60ag$SILKRAT=data60ag$AG1026/data60ag$AGOUT3
-data60ag$MAPLESUGARRAT=data60ag$AG1027/data60ag$AGOUT3
-data60ag$CANESUGARRAT=data60ag$AG1028/data60ag$AGOUT3
-data60ag$MAPLEMOLRAT=data60ag$AG1029/data60ag$AGOUT3
-data60ag$CANEMOLRAT=data60ag$AG1030/data60ag$AGOUT3
-data60ag$SORGHUMMOLRAT=data60ag$AG1031/data60ag$AGOUT3
-data60ag$BEESWAXRAT=data60ag$AG1032/data60ag$AGOUT3
-data60ag$HONEYRAT=data60ag$AG1033/data60ag$AGOUT3
+data60ag <- merge(data60ag,data60part)
+data60ag$WHEATRAT <- data60ag$AG1001/data60ag$AGOUT3
+data60ag$RYERAT <- data60ag$AG1002/data60ag$AGOUT3
+data60ag$CORNRAT <- data60ag$AG1003/data60ag$AGOUT3
+data60ag$OATRAT <- data60ag$AG1004/data60ag$AGOUT3
+data60ag$RICERAT <- data60ag$AG1005/data60ag$AGOUT3
+data60ag$TOBACCORAT <- data60ag$AG1006/data60ag$AGOUT3
+data60ag$COTTONRAT <- data60ag$AG1007/data60ag$AGOUT3
+data60ag$WOOLRAT <- data60ag$AG1008/data60ag$AGOUT3
+data60ag$PEARAT <- data60ag$AG1009/data60ag$AGOUT3
+data60ag$IRPOTATORAT <- data60ag$AG1010/data60ag$AGOUT3
+data60ag$SWPOTATORAT <- data60ag$AG1011/data60ag$AGOUT3
+data60ag$BARLEYRAT <- data60ag$AG1012/data60ag$AGOUT3
+data60ag$BUCKWHEATRAT <- data60ag$AG1013/data60ag$AGOUT3
+data60ag$WINERAT <- data60ag$AG1014/data60ag$AGOUT3
+data60ag$BUTTERRAT <- data60ag$AG1015/data60ag$AGOUT3
+data60ag$CHEESERAT <- data60ag$AG1016/data60ag$AGOUT3
+data60ag$HAYRAT <- data60ag$AG1017/data60ag$AGOUT3
+data60ag$CLOVERRAT <- data60ag$AG1018/data60ag$AGOUT3
+data60ag$GRASSRAT <- data60ag$AG1019/data60ag$AGOUT3
+data60ag$HOPSRAT <- data60ag$AG1020/data60ag$AGOUT3
+data60ag$DEWHEMPRAT <- data60ag$AG1021/data60ag$AGOUT3
+data60ag$WATERHEMPRAT <- data60ag$AG1022/data60ag$AGOUT3
+data60ag$OTHERHEMPRAT <- data60ag$AG1023/data60ag$AGOUT3
+data60ag$FLAXRAT <- data60ag$AG1024/data60ag$AGOUT3
+data60ag$FLAXSEEDRAT <- data60ag$AG1025/data60ag$AGOUT3
+data60ag$SILKRAT <- data60ag$AG1026/data60ag$AGOUT3
+data60ag$MAPLESUGARRAT <- data60ag$AG1027/data60ag$AGOUT3
+data60ag$CANESUGARRAT <- data60ag$AG1028/data60ag$AGOUT3
+data60ag$MAPLEMOLRAT <- data60ag$AG1029/data60ag$AGOUT3
+data60ag$CANEMOLRAT <- data60ag$AG1030/data60ag$AGOUT3
+data60ag$SORGHUMMOLRAT <- data60ag$AG1031/data60ag$AGOUT3
+data60ag$BEESWAXRAT <- data60ag$AG1032/data60ag$AGOUT3
+data60ag$HONEYRAT <- data60ag$AG1033/data60ag$AGOUT3
 data70part <- read.csv("https://raw.githubusercontent.com/enrique95/TFG/master/nhgis0023_ds16_1870_county.csv")
-data70ag=merge(data70ag,data70part)
-data70ag$WHEAT=data70ag$AJ1001+data70ag$AJ1002
-data70ag$WHEATRAT=(data70ag$WHEAT*1.04)/data70ag$AGOUT3
-data70ag$RYERAT=(data70ag$AJ1003*0.805)/data70ag$AGOUT3
-data70ag$CORNRAT=(data70ag$AJ1004*0.52)/data70ag$AGOUT3
-data70ag$OATRAT=(data70ag$AJ1005*0.43)/data70ag$AGOUT3
-data70ag$BARLEYRAT=(data70ag$AJ1006*0.85)/data70ag$AGOUT3
-data70ag$BUCKWHEATRAT=(data70ag$AJ1007*0.797)/data70ag$AGOUT3
-data70ag$TOBACCORAT=(data70ag$AJ1009*9.7/100)/data70ag$AGOUT3
-data70ag$COTTONRAT=(data70ag$AJ1010*9.71/100*400)/data70ag$AGOUT3
-data70ag$WOOLRAT=(data70ag$AJ1011*22.2/100)/data70ag$AGOUT3
-data70ag$IRPOTATORAT=(data70ag$AJ1013*1.180*0.60)/data70ag$AGOUT3
-data70ag$SWPOTATORAT=(data70ag$AJ1014*1.610*0.50)/data70ag$AGOUT3
-data70ag$BUTTERRAT=(data70ag$AJ1016*38.1/100)/data70ag$AGOUT3
-data70ag$HAYRAT=(data70ag$AJ1019*14.45)/data70ag$AGOUT3
+data70ag <- merge(data70ag,data70part)
+data70ag$WHEAT <- data70ag$AJ1001+data70ag$AJ1002
+data70ag$WHEATRAT <- (data70ag$WHEAT*1.04)/data70ag$AGOUT3
+data70ag$RYERAT <- (data70ag$AJ1003*0.805)/data70ag$AGOUT3
+data70ag$CORNRAT <- (data70ag$AJ1004*0.52)/data70ag$AGOUT3
+data70ag$OATRAT <- (data70ag$AJ1005*0.43)/data70ag$AGOUT3
+data70ag$BARLEYRAT<- (data70ag$AJ1006*0.85)/data70ag$AGOUT3
+data70ag$BUCKWHEATRAT <- (data70ag$AJ1007*0.797)/data70ag$AGOUT3
+data70ag$TOBACCORAT <- (data70ag$AJ1009*9.7/100)/data70ag$AGOUT3
+data70ag$COTTONRAT <- (data70ag$AJ1010*9.71/100*400)/data70ag$AGOUT3
+data70ag$WOOLRAT <- (data70ag$AJ1011*22.2/100)/data70ag$AGOUT3
+data70ag$IRPOTATORAT <- (data70ag$AJ1013*1.180*0.60)/data70ag$AGOUT3
+data70ag$SWPOTATORAT <- (data70ag$AJ1014*1.610*0.50)/data70ag$AGOUT3
+data70ag$BUTTERRAT <- (data70ag$AJ1016*38.1/100)/data70ag$AGOUT3
+data70ag$HAYRAT <- (data70ag$AJ1019*14.45)/data70ag$AGOUT3
 
 
 # Combining both dataframes
 common_cols <- intersect(colnames(data60ag), colnames(data70ag))
-datotalag=rbind(data60ag[common_cols],data70ag[common_cols])
+datotalag <- rbind(data60ag[common_cols],data70ag[common_cols])
 
 # Clasifying states
 datotalag$CSA=ifelse(datotalag$STATE%in%c("South Carolina","Mississippi", "Florida","Alabama","Georgia", "Louisiana", "Texas","Virginia","Arkansas","Tennessee","North Carolina", "Missouri", "Kentucky"),1,0)
