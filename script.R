@@ -7,6 +7,9 @@ install.packages("robustbase")
 library(robustbase)
 install.packages("dplyr")
 library(dplyr)
+install.packages("lmtest")
+library(lmtest)
+
 
 # Uploading the data
 data60ag1 <- read.csv("https://raw.githubusercontent.com/enrique95/TFG/master/nhgis0020_ds13_1860_county.csv")
