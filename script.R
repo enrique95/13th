@@ -201,17 +201,6 @@ DIDFIXSOUTHNOPOP=plm(LAGOUT3~SLAVES+AMEN+DIDRAT+LMACHINE+LLIVESTOCK+LFARMS+FORAT
 DIDFIXCOTTONSOUTHNOPOP=plm(COTTONRAT~SLAVES+AMEN+DIDRAT+LMACHINE+LLIVESTOCK+LFARMS+FORATIO, data = paneldatotal[datotalag$CSA==1,], model = "within")
 DIDFIXTOBACCOSOUTHNOPOP=plm(TOBACCORAT~SLAVES+AMEN+DIDRAT+LMACHINE+LLIVESTOCK+LFARMS+FORATIO, data = paneldatotal[datotalag$CSA==1,], model = "within")
 
-# Making tables for LaTeX with stargazer package
-stargazer(DIDRATNOPOP,DIDFIXNOPOP,dep.var.labels=c("Agregate agricultural output (logs)"),title="Total agricultural production" , covariate.labels=c("Slave ratio","Before the 13th Amendment","Diff-in-diff estimator","Implements and machinery (logs)","Livestock (logs)","Number of farms (logs)", "Foreign people ratio"),omit.stat=c("LL","ser","aic","bic"),no.space=TRUE,report = ('vc*p'))
-stargazer(DIDRATCOTTONNOPOP,DIDFIXCOTTONNOPOP,dep.var.labels=c("Cotton ratio"),title="Cotton production per total agricultural production" , covariate.labels=c("Slave ratio","Before the 13th Amendment","Diff-in-diff estimator","Implements and machinery (logs)","Livestock (logs)","Number of farms (logs)", "Foreign people ratio"),omit.stat=c("LL","ser","aic","bic"),no.space=TRUE,report = ('vc*p'))
-stargazer(DIDRATTOBACCONOPOP,DIDFIXTOBACCONOPOP,dep.var.labels=c("Tobacco ratio"),title="Tobacco production per total agricultural production" , covariate.labels=c("Slave ratio","Before the 13th Amendment","Diff-in-diff estimator","Implements and machinery","Livestock","Number of farms", "Foreign people ratio"),omit.stat=c("LL","ser","aic","bic"),no.space=TRUE,report = ('vc*p'))
-
-
-#Stargazer heterogeneity
-stargazer(DIDRATSOUTHNOPOP,DIDFIXSOUTHNOPOP,dep.var.labels=c("Agregate agricultural output (logs)"),title="Total agricultural production in confederate states" , covariate.labels=c("Slave ratio","Before the 13th Amendment","Diff-in-diff estimator","Implements and machinery (logs)","Livestock (logs)","Number of farms (logs)", "Foreign people ratio"),omit.stat=c("LL","ser","aic","bic"),no.space=TRUE,report = ('vc*p'))
-stargazer(DIDRATCOTTONSOUTHNOPOP,DIDFIXCOTTONSOUTHNOPOP,dep.var.labels=c("Cotton ratio"),title="Cotton production per total agricultural production in confederate states" , covariate.labels=c("Slave ratio","Before the 13th Amendment","Diff-in-diff estimator","Implements and machinery (logs)","Livestock (logs)","Number of farms (logs)", "Foreign people ratio"),omit.stat=c("LL","ser","aic","bic"),no.space=TRUE,report = ('vc*p'))
-stargazer(DIDRATTOBACCOSOUTHNOPOP,DIDFIXTOBACCOSOUTHNOPOP,dep.var.labels=c("Tobacco ratio"),title="Tobacco production per total agricultural production in confederate states" , covariate.labels=c("Slave ratio","Before the 13th Amendment","Diff-in-diff estimator","Implements and machinery (logs)","Livestock (logs)","Number of farms (logs)", "Foreign people ratio"),omit.stat=c("LL","ser","aic","bic"),no.space=TRUE,report = ('vc*p'))
-
 
 #with population
 
@@ -224,13 +213,31 @@ DIDFIXSOUTH=plm(LAGOUT3~SLAVES+AMEN+DIDRAT+LMACHINE+LLIVESTOCK+LFARMS+FORATIO+PO
 DIDFIXCOTTONSOUTH=plm(COTTONRAT~SLAVES+AMEN+DIDRAT+LMACHINE+LLIVESTOCK+LFARMS+FORATIO+POPGROWTH, data = paneldatotal[datotalag$CSA==1,], model = "within")
 DIDFIXTOBACCOSOUTH=plm(TOBACCORAT~SLAVES+AMEN+DIDRAT+LMACHINE+LLIVESTOCK+LFARMS+FORATIO+POPGROWTH, data = paneldatotal[datotalag$CSA==1,], model = "within")
 
-#Making tables
+
+
+#Testing for heteroskedasticity in the models
+
+models <- mget(ls(pattern = "DID"))
+heterotests <- lapply(models, bptest)
+
+# Making tables for LaTeX with stargazer package
+stargazer(DIDRATNOPOP,DIDFIXNOPOP,dep.var.labels=c("Agregate agricultural output (logs)"),title="Total agricultural production" , covariate.labels=c("Slave ratio","Before the 13th Amendment","Diff-in-diff estimator","Implements and machinery (logs)","Livestock (logs)","Number of farms (logs)", "Foreign people ratio"),omit.stat=c("LL","ser","aic","bic"),no.space=TRUE,report = ('vc*p'))
+stargazer(DIDRATCOTTONNOPOP,DIDFIXCOTTONNOPOP,dep.var.labels=c("Cotton ratio"),title="Cotton production per total agricultural production" , covariate.labels=c("Slave ratio","Before the 13th Amendment","Diff-in-diff estimator","Implements and machinery (logs)","Livestock (logs)","Number of farms (logs)", "Foreign people ratio"),omit.stat=c("LL","ser","aic","bic"),no.space=TRUE,report = ('vc*p'))
+stargazer(DIDRATTOBACCONOPOP,DIDFIXTOBACCONOPOP,dep.var.labels=c("Tobacco ratio"),title="Tobacco production per total agricultural production" , covariate.labels=c("Slave ratio","Before the 13th Amendment","Diff-in-diff estimator","Implements and machinery","Livestock","Number of farms", "Foreign people ratio"),omit.stat=c("LL","ser","aic","bic"),no.space=TRUE,report = ('vc*p'))
+
+#Making tables with population
 stargazer(DIDRAT,DIDFIX,dep.var.labels=c("Agregate agricultural output (logs)"),title="Total agricultural production including population growth" , covariate.labels=c("Slave ratio","Before the 13th Amendment","Diff-in-diff estimator","Implements and machinery (logs)","Livestock (logs)","Number of farms (logs)", "Foreign people ratio", "Population growth rate 1860-1870"),omit.stat=c("LL","ser","aic","bic"),no.space=TRUE,report = ('vc*p'))
 stargazer(DIDRATCOTTON,DIDFIXCOTTON,dep.var.labels=c("Cotton ratio"),title="Cotton production per total agricultural production including population growth" , covariate.labels=c("Slave ratio","Before the 13th Amendment","Diff-in-diff estimator","Implements and machinery (logs)","Livestock (logs)","Number of farms (logs)", "Foreign people ratio", "Population growth rate 1860-1870"),omit.stat=c("LL","ser","aic","bic"),no.space=TRUE,report = ('vc*p'))
 stargazer(DIDRATTOBACCO,DIDFIXTOBACCO,dep.var.labels=c("Tobacco ratio"),title="Tobacco production per total agricultural production including population growth" , covariate.labels=c("Slave ratio","Before the 13th Amendment","Diff-in-diff estimator","Implements and machinery (logs)","Livestock (logs)","Number of farms (logs)", "Foreign people ratio", "Population growth rate 1860-1870"),omit.stat=c("LL","ser","aic","bic"),no.space=TRUE,report = ('vc*p'))
 
 
-#Stargazer heterogeneity
+#Stargazer heterogeneity and south
+stargazer(DIDRATSOUTHNOPOP,DIDFIXSOUTHNOPOP,dep.var.labels=c("Agregate agricultural output (logs)"),title="Total agricultural production in confederate states" , covariate.labels=c("Slave ratio","Before the 13th Amendment","Diff-in-diff estimator","Implements and machinery (logs)","Livestock (logs)","Number of farms (logs)", "Foreign people ratio"),omit.stat=c("LL","ser","aic","bic"),no.space=TRUE,report = ('vc*p'))
+stargazer(DIDRATCOTTONSOUTHNOPOP,DIDFIXCOTTONSOUTHNOPOP,dep.var.labels=c("Cotton ratio"),title="Cotton production per total agricultural production in confederate states" , covariate.labels=c("Slave ratio","Before the 13th Amendment","Diff-in-diff estimator","Implements and machinery (logs)","Livestock (logs)","Number of farms (logs)", "Foreign people ratio"),omit.stat=c("LL","ser","aic","bic"),no.space=TRUE,report = ('vc*p'))
+stargazer(DIDRATTOBACCOSOUTHNOPOP,DIDFIXTOBACCOSOUTHNOPOP,dep.var.labels=c("Tobacco ratio"),title="Tobacco production per total agricultural production in confederate states" , covariate.labels=c("Slave ratio","Before the 13th Amendment","Diff-in-diff estimator","Implements and machinery (logs)","Livestock (logs)","Number of farms (logs)", "Foreign people ratio"),omit.stat=c("LL","ser","aic","bic"),no.space=TRUE,report = ('vc*p'))
+
+
+#Stargazer heterogeneity, south and population
 stargazer(DIDRATSOUTH,DIDFIXSOUTH,dep.var.labels=c("Agregate agricultural output (logs)"),title="Total agricultural production in confederate states including population growth" , covariate.labels=c("Slave ratio","Before the 13th Amendment","Diff-in-diff estimator","Implements and machinery (logs)","Livestock (logs)","Number of farms (logs)", "Foreign people ratio", "Population growth rate 1860-1870"),omit.stat=c("LL","ser","aic","bic"),no.space=TRUE,report = ('vc*p'))
 stargazer(DIDRATCOTTONSOUTH,DIDFIXCOTTONSOUTH,dep.var.labels=c("Cotton ratio"),title="Cotton production per total agricultural production in confederate states including population growth" , covariate.labels=c("Slave ratio","Before the 13th Amendment","Diff-in-diff estimator","Implements and machinery (logs)","Livestoc (logs)k","Number of farms (logs)", "Foreign people ratio", "Population growth rate 1860-1870"),omit.stat=c("LL","ser","aic","bic"),no.space=TRUE,report = ('vc*p'))
 stargazer(DIDRATTOBACCOSOUTH,DIDFIXTOBACCOSOUTH,dep.var.labels=c("Tobacco ratio"),title="Tobacco production per total agricultural production in confederate states including population growth" , covariate.labels=c("Slave ratio","Before the 13th Amendment","Diff-in-diff estimator","Implements and machinery (logs)","Livestock (logs)","Number of farms (logs)", "Foreign people ratio", "Population growth rate 1860-1870"),omit.stat=c("LL","ser","aic","bic"),no.space=TRUE,report = ('vc*p'))
