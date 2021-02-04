@@ -22,6 +22,9 @@ data60ag <- merge(data60ag1,data60ag2)
 data70ag <- merge(data70ag1,data70ag2)
 remove("data60ag1","data60ag2","data70ag1","data70ag2")
 
+#cotton price per pound 1870
+cottonprice70 <- 12.1
+
 # Transforming and creating variables
 data60ag$FARMS <- rowSums(data60ag[,c(30:36)])
 data60ag$FORATIO <- (data60ag$AH5004+data60ag$AH5005+data60ag$AH5006)/data60ag$AG3001
