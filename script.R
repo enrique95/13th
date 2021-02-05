@@ -9,14 +9,23 @@ install.packages("dplyr")
 library(dplyr)
 install.packages("lmtest")
 library(lmtest)
+install.packages("ipumsr")
+library(ipumsr)
 
 
 # Uploading the data
-data60ag1 <- read.csv("https://raw.githubusercontent.com/enrique95/TFG/master/nhgis0020_ds13_1860_county.csv")
-data60ag2 <- read.csv("https://raw.githubusercontent.com/enrique95/TFG/master/nhgis0020_ds14_1860_county.csv")
-data70ag1 <- read.csv("https://raw.githubusercontent.com/enrique95/TFG/master/nhgis0020_ds16_1870_county.csv")
-data70ag2 <- read.csv("https://raw.githubusercontent.com/enrique95/TFG/master/nhgis0020_ds17_1870_county.csv")
+csvpath <- "13th_1.zip"
+shppath <- "https://github.com/enrique95/13th/blob/main/13th_shape.zip?raw=true"
+metadatas <- read_ipums_ddi("https://github.com/enrique95/13th/blob/main/nhgis0028_csv.zip")
 
+
+
+# data60ag1 <- read.csv("https://raw.githubusercontent.com/enrique95/TFG/master/nhgis0020_ds13_1860_county.csv")
+# data60ag2 <- read.csv("https://raw.githubusercontent.com/enrique95/TFG/master/nhgis0020_ds14_1860_county.csv")
+# data70ag1 <- read.csv("https://raw.githubusercontent.com/enrique95/TFG/master/nhgis0020_ds16_1870_county.csv")
+# data70ag2 <- read.csv("https://raw.githubusercontent.com/enrique95/TFG/master/nhgis0020_ds17_1870_county.csv")
+
+ 
 # Merging data
 data60ag <- merge(data60ag1,data60ag2)
 data70ag <- merge(data70ag1,data70ag2)
