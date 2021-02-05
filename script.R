@@ -16,7 +16,7 @@ library(ipumsr)
 # Uploading the data
 csvpath <- "13th_1.zip"
 shppath <- "https://github.com/enrique95/13th/blob/main/13th_shape.zip?raw=true"
-metadatas <- read_ipums_ddi("https://github.com/enrique95/13th/blob/main/nhgis0028_csv.zip")
+metadatas <- read_ipums_ddi(csvpath)
 
 
 
