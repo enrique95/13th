@@ -14,9 +14,23 @@ library(ipumsr)
 
 
 # Uploading the data
-csvpath <- "13th_1.zip"
-shppath <- "https://github.com/enrique95/13th/blob/main/13th_shape.zip?raw=true"
-metadatas <- read_ipums_ddi(csvpath)
+path18501st <- "18501st_csv.zip" #using a relative path for repos downloaded locally
+path18502nd <- "18502nd_csv.zip" #using a relative path for repos downloaded locally
+path18601st <- "18601st_csv.zip" #using a relative path for repos downloaded locally
+path18602nd <- "18602nd_csv.zip" #using a relative path for repos downloaded locally
+path18701st <- "18701st_csv.zip" #using a relative path for repos downloaded locally
+path1870nd <- "18702nd_csv.zip" #using a relative path for repos downloaded locally
+path18801st <- "18801st_csv.zip" #using a relative path for repos downloaded locally
+path18802nd <- "18802nd_csv.zip" #using a relative path for repos downloaded locally
+
+
+shp1850path <- "1850_shape.zip" #using a relative path for repos downloaded locally
+shp1860path <- "1860_shape.zip" #using a relative path for repos downloaded locally
+shp1870path <- "1870_shape.zip" #using a relative path for repos downloaded locally
+shp1880path <- "1880_shape.zip" #using a relative path for repos downloaded locally
+
+
+metadata18501 <- read_ipums_codebook(first1850path)
 
 
 
