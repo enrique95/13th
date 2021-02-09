@@ -32,7 +32,13 @@ shp1880path <- "1880_shape.zip" #using a relative path for repos downloaded loca
 
 metadata18501 <- read_ipums_codebook(first1850path)
 first1850 <- read_nhgis_sf(data_file = path18501st, shape_file = shp1850path)
-
+second1850 <- read_nhgis_sf(data_file = path18502nd, shape_file = shp1850path)
+first1860 <- read_nhgis_sf(data_file = path18601st, shape_file = shp1850path)
+second1860 <- read_nhgis_sf(data_file = path18602nd, shape_file = shp1850path)
+first1870 <- read_nhgis_sf(data_file = path18701st, shape_file = shp1850path)
+second1870 <- read_nhgis_sf(data_file = path18702nd, shape_file = shp1850path)
+first1880 <- read_nhgis_sf(data_file = path18801st, shape_file = shp1850path)
+second1880 <- read_nhgis_sf(data_file = path18802nd, shape_file = shp1850path)
 
 # data60ag1 <- read.csv("https://raw.githubusercontent.com/enrique95/TFG/master/nhgis0020_ds13_1860_county.csv")
 # data60ag2 <- read.csv("https://raw.githubusercontent.com/enrique95/TFG/master/nhgis0020_ds14_1860_county.csv")
