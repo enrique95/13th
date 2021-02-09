@@ -31,7 +31,7 @@ shp1880path <- "1880_shape.zip" #using a relative path for repos downloaded loca
 
 
 metadata18501 <- read_ipums_codebook(first1850path)
-
+first1850 <- read_nhgis_sf(data_file = path18501st, shape_file = shp1850path)
 
 
 # data60ag1 <- read.csv("https://raw.githubusercontent.com/enrique95/TFG/master/nhgis0020_ds13_1860_county.csv")
