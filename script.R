@@ -11,6 +11,15 @@ install.packages("lmtest")
 library(lmtest)
 install.packages("ipumsr")
 library(ipumsr)
+install.packages("rmarkdown")
+library(rmarkdown)
+
+
+# convert this into a rmd but first try with the .tex file
+#use pandoc_convert"thesis.tex", to= "markdown", output = "thesis.md", citeproc = TRUE) and try to add the .bib 
+# and see if it can load the bibliography too
+# check the path inside the .tex file in case it gives you some problems
+
 
 
 # Uploading the data
