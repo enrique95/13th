@@ -7,21 +7,21 @@ date: '`r format(Sys.time(), "%m/%Y")`'
 output: html_document
 ---
 
-#Dedication
+# Dedication
 
 I would like to thank Iván Logrosán for the initial idea, the UC3M for helping me through this journey of learning, the NHGIS workers for their help and resources and last but not least, the discoRd server, the aces of R in discord.
 
 
-#1. Introduction
+# 1. Introduction
 
-##1.1 Motivation of work and goals
+## 1.1 Motivation of work and goals
 
 Slavery has been a very controversial topic that even nowadays has ramifications in many different sectors and markets, be "legal" but out of public scrutiny, or illegal, yet scarcely prosecuted. This project aims to analyze the effect of slavery and its abolition with the 13th Amendment on the agriculture through the use of agricultural, demographic and geographical data. The goal of this project is to analyze just the economic background. From the ethical background there is not much discussion regarding this topic.
 
-##1.2 Resources and data sources
+## 1.2 Resources and data sources
 
 The data has been retrieved from the NHGIS database and analyzed through the `ipumsr` package, and wrangled with `base` R and `tidyverse` functions. The prices of many agricultural products that are not inside the NHGIS database come directly from the US Census.
 
-##1.3 Metodology
+## 1.3 Metodology
 
 The data will be analyzed through a Diff-in-diff model. This model is ideal for analyzing changes of trend when a policy is enforced or some major event in a single point in time is potentially responsible of the change of pace of some activity. In this case the 13th Amendment is this policy that forbade the use of slave work in the USA. Another major event, intrinsically related to the 13th Amendment and of great impact in the US was the Civil War. This will be analyzed too.
