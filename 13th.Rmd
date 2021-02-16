@@ -1,32 +1,27 @@
 ---
 title: "13th"
 author: "enrique95"
-date: '`r format(Sys.time(), "%d/%m/%Y")`'
-dedication: "I would like to thank Iván Logrosán for the initial idea, the UC3M for helping me through this journey of learning, the NHGIS workers for their help and resources and last but not least, the discoRd server, the aces of R in discord"
+date: '`r format(Sys.time(), "%m/%Y")`'
+#dedication: "I would like to thank Iván Logrosán for the initial idea, the UC3M for helping me through this journey of learning, the NHGIS workers for their help and resources and last but not least, the discoRd server, the aces of R in discord"
 
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+#Dedication
 
-## R Markdown
+I would like to thank Iván Logrosán for the initial idea, the UC3M for helping me through this journey of learning, the NHGIS workers for their help and resources and last but not least, the discoRd server, the aces of R in discord.
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+#1. Introduction
 
-```{r cars}
-summary(cars)
-```
+##1.1 Motivation of work and goals
 
-## Including Plots
+Slavery has been a very controversial topic that even nowadays has ramifications in many different sectors and markets, be "legal" but out of public scrutiny, or illegal, yet scarcely prosecuted. This project aims to analyze the effect of slavery and its abolition with the 13th Amendment on the agriculture through the use of agricultural, demographic and geographical data. The goal of this project is to analyze just the economic background. From the ethical background there is not much discussion regarding this topic.
 
-You can also embed plots, for example:
+##1.2 Resources and data sources
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+The data has been retrieved from the NHGIS database and analyzed through the `ipumsr` package, and wrangled with `base` R and `tidyverse` functions. The prices of many agricultural products that are not inside the NHGIS database come directly from the US Census.
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+##1.3 Metodology
+
+The data will be analyzed through a Diff-in-diff model. This model is ideal for analyzing changes of trend when a policy is enforced or some major event in a single point in time is potentially responsible of the change of pace of some activity. In this case the 13th Amendment is this policy that forbade the use of slave work in the USA. Another major event, intrinsically related to the 13th Amendment and of great impact in the US was the Civil War. This will be analyzed too.
