@@ -20,6 +20,13 @@ library(rmarkdown)
 # and see if it can load the bibliography too
 # check the path inside the .tex file in case it gives you some problems
 
+#uploading the data as a whole
+
+pathshp <- "nhgis0027_shape.zip"
+pathcsv <- "nhgis0027_csv.zip"
+
+f1850<- read_nhgis_sf( data_file = pathcsv, data_layer=contains("ds9_1850"), shape_file = pathshp, shape_layer = contains("1850"))
+s1850 <- read_nhgis_sf( data_file = pathcsv, data_layer=contains("ds10_1850"), shape_file = pathshp, shape_layer = contains("1850"))
 
 
 # Uploading the data
