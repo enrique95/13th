@@ -27,6 +27,12 @@ pathcsv <- "nhgis0027_csv.zip"
 
 f1850<- read_nhgis_sf( data_file = pathcsv, data_layer=contains("ds9_1850"), shape_file = pathshp, shape_layer = contains("1850"))
 s1850 <- read_nhgis_sf( data_file = pathcsv, data_layer=contains("ds10_1850"), shape_file = pathshp, shape_layer = contains("1850"))
+f1860<- read_nhgis_sf( data_file = pathcsv, data_layer=contains("ds13_1860"), shape_file = pathshp, shape_layer = contains("1860"))
+s1860<- read_nhgis_sf( data_file = pathcsv, data_layer=contains("ds14_1860"), shape_file = pathshp, shape_layer = contains("1860"))
+f1870<- read_nhgis_sf( data_file = pathcsv, data_layer=contains("ds16_1870"), shape_file = pathshp, shape_layer = contains("1870"))
+s1870<- read_nhgis_sf( data_file = pathcsv, data_layer=contains("ds17_1870"), shape_file = pathshp, shape_layer = contains("1870"))
+f1880<- read_nhgis_sf( data_file = pathcsv, data_layer=contains("ds22_1880"), shape_file = pathshp, shape_layer = contains("1880"))
+s1880<- read_nhgis_sf( data_file = pathcsv, data_layer=contains("ds23_1880"), shape_file = pathshp, shape_layer = contains("1880"))
 
 
 # Uploading the data
