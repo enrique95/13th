@@ -20,58 +20,41 @@ library(rmarkdown)
 # and see if it can load the bibliography too
 # check the path inside the .tex file in case it gives you some problems
 
-#uploading the data as a whole
+#indicate the paths of the data and shape for the ipumsr functions to read from
 
 pathshp <- "nhgis0027_shape.zip"
 pathcsv <- "nhgis0027_csv.zip"
+pathcb<- "nhgis0027_csv.zip"
 
-f1850<- read_nhgis_sf( data_file = pathcsv, data_layer=contains("ds9_1850"), shape_file = pathshp, shape_layer = contains("1850"))
-s1850 <- read_nhgis_sf( data_file = pathcsv, data_layer=contains("ds10_1850"), shape_file = pathshp, shape_layer = contains("1850"))
-f1860<- read_nhgis_sf( data_file = pathcsv, data_layer=contains("ds13_1860"), shape_file = pathshp, shape_layer = contains("1860"))
-s1860<- read_nhgis_sf( data_file = pathcsv, data_layer=contains("ds14_1860"), shape_file = pathshp, shape_layer = contains("1860"))
-f1870<- read_nhgis_sf( data_file = pathcsv, data_layer=contains("ds16_1870"), shape_file = pathshp, shape_layer = contains("1870"))
-s1870<- read_nhgis_sf( data_file = pathcsv, data_layer=contains("ds17_1870"), shape_file = pathshp, shape_layer = contains("1870"))
-f1880<- read_nhgis_sf( data_file = pathcsv, data_layer=contains("ds22_1880"), shape_file = pathshp, shape_layer = contains("1880"))
-s1880<- read_nhgis_sf( data_file = pathcsv, data_layer=contains("ds23_1880"), shape_file = pathshp, shape_layer = contains("1880"))
-
-
-# Uploading the data
-path18501st <- "18501st_csv.zip" #using a relative path for repos downloaded locally
-path18502nd <- "18502nd_csv.zip" #using a relative path for repos downloaded locally
-path18601st <- "18601st_csv.zip" #using a relative path for repos downloaded locally
-path18602nd <- "18602nd_csv.zip" #using a relative path for repos downloaded locally
-path18701st <- "18701st_csv.zip" #using a relative path for repos downloaded locally
-path1870nd <- "18702nd_csv.zip" #using a relative path for repos downloaded locally
-path18801st <- "18801st_csv.zip" #using a relative path for repos downloaded locally
-path18802nd <- "18802nd_csv.zip" #using a relative path for repos downloaded locally
-
-
-shp1850path <- "1850_shape.zip" #using a relative path for repos downloaded locally
-shp1860path <- "1860_shape.zip" #using a relative path for repos downloaded locally
-shp1870path <- "1870_shape.zip" #using a relative path for repos downloaded locally
-shp1880path <- "1880_shape.zip" #using a relative path for repos downloaded locally
-
-
-metadata18501 <- read_ipums_codebook(first1850path)
-first1850 <- read_nhgis_sf(data_file = path18501st, shape_file = shp1850path)
-second1850 <- read_nhgis_sf(data_file = path18502nd, shape_file = shp1850path)
-first1860 <- read_nhgis_sf(data_file = path18601st, shape_file = shp1850path)
-second1860 <- read_nhgis_sf(data_file = path18602nd, shape_file = shp1850path)
-first1870 <- read_nhgis_sf(data_file = path18701st, shape_file = shp1850path)
-second1870 <- read_nhgis_sf(data_file = path18702nd, shape_file = shp1850path)
-first1880 <- read_nhgis_sf(data_file = path18801st, shape_file = shp1850path)
-second1880 <- read_nhgis_sf(data_file = path18802nd, shape_file = shp1850path)
-
-# data60ag1 <- read.csv("https://raw.githubusercontent.com/enrique95/TFG/master/nhgis0020_ds13_1860_county.csv")
-# data60ag2 <- read.csv("https://raw.githubusercontent.com/enrique95/TFG/master/nhgis0020_ds14_1860_county.csv")
-# data70ag1 <- read.csv("https://raw.githubusercontent.com/enrique95/TFG/master/nhgis0020_ds16_1870_county.csv")
-# data70ag2 <- read.csv("https://raw.githubusercontent.com/enrique95/TFG/master/nhgis0020_ds17_1870_county.csv")
-
+#uploading the csv datasets (do not add year after "ds*" otherwise it can't be easily copied and pasted)
  
-# Merging data
-data60ag <- merge(data60ag1,data60ag2)
-data70ag <- merge(data70ag1,data70ag2)
-remove("data60ag1","data60ag2","data70ag1","data70ag2")
+csv1850a <- read_nhgis(data_file = pathcsv, data_layer=contains("ds9"))
+csv1850b <- read_nhgis(data_file = pathcsv, data_layer=contains("ds10"))
+csv1860a <- read_nhgis(data_file = pathcsv, data_layer=contains("ds13"))
+csv1860b <- read_nhgis(data_file = pathcsv, data_layer=contains("ds14"))
+csv1870a <- read_nhgis(data_file = pathcsv, data_layer=contains("ds16"))
+csv1870b <- read_nhgis(data_file = pathcsv, data_layer=contains("ds17"))
+csv1880a <- read_nhgis(data_file = pathcsv, data_layer=contains("ds22"))
+csv1880b <- read_nhgis(data_file = pathcsv, data_layer=contains("ds23"))
+  
+#merging the csv datasets
+csv1850 <- merge(csv1850a,csv1850b)
+csv1860 <- merge(csv1860a,csv1860b)
+csv1870 <- merge(csv1870a,csv1870b)
+csv1880 <- merge(csv1880a,csv1880b)
+
+#uploading shape files
+shape1850 <-  read_ipums_sf(shape_file = pathshp, shape_layer = contains("1850"))
+shape1860 <-  read_ipums_sf(shape_file = pathshp, shape_layer = contains("1860"))
+shape1870 <-  read_ipums_sf(shape_file = pathshp, shape_layer = contains("1870"))
+shape1880 <-  read_ipums_sf(shape_file = pathshp, shape_layer = contains("1880"))
+
+
+#joining csv and shape
+data1850 <- ipums_shape_inner_join(data = csv1850,shape_data = shape1850, by = "GISJOIN")
+data1860 <- ipums_shape_inner_join(data = csv1860,shape_data = shape1860, by = "GISJOIN")
+data1870 <- ipums_shape_inner_join(data = csv1870,shape_data = shape1870, by = "GISJOIN")
+data1880 <- ipums_shape_inner_join(data = csv1880,shape_data = shape1880, by = "GISJOIN")
 
 #cotton price per pound 1870
 cottonprice70 <- 12.1
