@@ -13,8 +13,10 @@ install.packages("ipumsr")
 library(ipumsr)
 install.packages("rmarkdown")
 library(rmarkdown)
-
-
+install.packages("tesseract")
+library(tesseract)
+install.packages("pdftools")
+library(pdftools)
 # convert this into a rmd but first try with the .tex file
 #use pandoc_convert"thesis.tex", to= "markdown", output = "thesis.md", citeproc = TRUE) and try to add the .bib 
 # and see if it can load the bibliography too
@@ -57,8 +59,11 @@ data1860 <- ipums_shape_inner_join(data = csv1860,shape_data = shape1860, by = "
 data1870 <- ipums_shape_inner_join(data = csv1870,shape_data = shape1870, by = "GISJOIN", verbose=TRUE)
 data1880 <- ipums_shape_inner_join(data = csv1880,shape_data = shape1880, by = "GISJOIN", verbose=TRUE)
 
-#cotton price per pound 1870
-cottonprice70 <- 12.1
+pngcensus <- pdftools::pdf_convert('https://www2.census.gov/library/publications/1960/compendia/hist_stats_colonial-1957/hist_stats_colonial-1957-chK.pdf', page = 46, dpi = 600)
+
+
+# #cotton price per pound 1870
+# cottonprice70 <- 12.1
 
 # Transforming and creating variables
 data60ag$FARMS <- rowSums(data60ag[,c(30:36)])
