@@ -27,7 +27,8 @@ pathcsv <- "nhgis0027_csv.zip"
 pathcb<- "nhgis0027_csv.zip"
 
 #uploading the csv datasets (do not add year after "ds*" otherwise it can't be easily copied and pasted)
- 
+
+
 csv1850a <- read_nhgis(data_file = pathcsv, data_layer=contains("ds9"))
 csv1850b <- read_nhgis(data_file = pathcsv, data_layer=contains("ds10"))
 csv1860a <- read_nhgis(data_file = pathcsv, data_layer=contains("ds13"))
@@ -51,10 +52,10 @@ shape1880 <-  read_ipums_sf(shape_file = pathshp, shape_layer = contains("1880")
 
 
 #joining csv and shape
-data1850 <- ipums_shape_inner_join(data = csv1850,shape_data = shape1850, by = "GISJOIN")
-data1860 <- ipums_shape_inner_join(data = csv1860,shape_data = shape1860, by = "GISJOIN")
-data1870 <- ipums_shape_inner_join(data = csv1870,shape_data = shape1870, by = "GISJOIN")
-data1880 <- ipums_shape_inner_join(data = csv1880,shape_data = shape1880, by = "GISJOIN")
+data1850 <- ipums_shape_inner_join(data = csv1850,shape_data = shape1850, by = "GISJOIN", verbose=TRUE)
+data1860 <- ipums_shape_inner_join(data = csv1860,shape_data = shape1860, by = "GISJOIN", verbose=TRUE)
+data1870 <- ipums_shape_inner_join(data = csv1870,shape_data = shape1870, by = "GISJOIN", verbose=TRUE)
+data1880 <- ipums_shape_inner_join(data = csv1880,shape_data = shape1880, by = "GISJOIN", verbose=TRUE)
 
 #cotton price per pound 1870
 cottonprice70 <- 12.1
