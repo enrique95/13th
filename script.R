@@ -17,6 +17,8 @@ install.packages("tesseract")
 library(tesseract)
 install.packages("pdftools")
 library(pdftools)
+install.packages("sf")
+library(sf)
 # convert this into a rmd but first try with the .tex file
 #use pandoc_convert"thesis.tex", to= "markdown", output = "thesis.md", citeproc = TRUE) and try to add the .bib 
 # and see if it can load the bibliography too
@@ -41,10 +43,10 @@ csv1880a <- read_nhgis(data_file = pathcsv, data_layer=contains("ds22"))
 csv1880b <- read_nhgis(data_file = pathcsv, data_layer=contains("ds23"))
   
 #merging the csv datasets
-csv1850 <- merge(csv1850a,csv1850b)
-csv1860 <- merge(csv1860a,csv1860b)
-csv1870 <- merge(csv1870a,csv1870b)
-csv1880 <- merge(csv1880a,csv1880b)
+csv1850 <- left_join(csv1850a,csv1850b, by = "GISJOIN")
+csv1860 <- left_join(csv1860a,csv1860b, by = "GISJOIN")
+csv1870 <- left_join(csv1870a,csv1870b, by = "GISJOIN")
+csv1880 <- left_join(csv1880a,csv1880b, by = "GISJOIN")
 
 #uploading shape files
 shape1850 <-  read_ipums_sf(shape_file = pathshp, shape_layer = contains("1850"))
