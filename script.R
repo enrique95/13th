@@ -61,8 +61,13 @@ data1860 <- ipums_shape_inner_join(data = csv1860,shape_data = shape1860, by = "
 data1870 <- ipums_shape_inner_join(data = csv1870,shape_data = shape1870, by = "GISJOIN", verbose=TRUE)
 data1880 <- ipums_shape_inner_join(data = csv1880,shape_data = shape1880, by = "GISJOIN", verbose=TRUE)
 
-pngcensustobcot <- pdftools::pdf_convert('https://www2.census.gov/library/publications/1960/compendia/hist_stats_colonial-1957/hist_stats_colonial-1957-chK.pdf', page = 46, dpi = 1200)
-tabletobcot <- tesseract::ocr(pdftools::pdf_convert('https://www2.census.gov/library/publications/1960/compendia/hist_stats_colonial-1957/hist_stats_colonial-1957-chK.pdf', page = 46, dpi = 600))
+
+
+tabletobcot <- pdftools::pdf_convert('https://www2.census.gov/library/publications/1960/compendia/hist_stats_colonial-1957/hist_stats_colonial-1957-chK.pdf', 
+                                     page = 46, dpi = 1200) %>% 
+  tesseract::ocr(engine = tesseract("eng")) %>% cat() %>% write.table()
+
+
 
 # #cotton price per pound 1870
 # cottonprice70 <- 12.1
