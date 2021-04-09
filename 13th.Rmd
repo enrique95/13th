@@ -4,7 +4,7 @@ author: "enrique95"
 date: '`r format(Sys.time(), "%m/%Y")`'
 #dedication: "I would like to thank Iván Logrosán for the initial idea, the UC3M for helping me through this journey of learning, the NHGIS workers for their help and resources and last but not least, the discoRd server, the aces of R in discord"
 
-output: html_document
+output: md_document
 ---
 
 # Dedication
@@ -26,7 +26,7 @@ The data has been retrieved from the NHGIS database and analyzed through the `ip
 
 The data will be analyzed through a Diff-in-diff model. This model is ideal for analyzing changes of trend when a policy is enforced or some major event in a single point in time is potentially responsible of the change of pace of some activity. In this case the 13th Amendment is this policy that forbade the use of slave work in the USA. Another major event, intrinsically related to the 13th Amendment and of great impact in the US was the Civil War. This will be analyzed too.
 
-# 2. Data analysis
+# 2. Getting started
 ## 2.1 Packages
 
 First the packages necessary for reading and managing the data are installed and loaded
@@ -52,3 +52,12 @@ library(sf)
 
 ```
 
+## 2.2 Loading the data
+
+First the relative paths are added so the `ipumsr` functions know the zip files from which can extract the data
+
+```{r}
+pathshp <- "nhgis0027_shape.zip"
+pathcsv <- "nhgis0027_csv.zip"
+pathcb<- "nhgis0027_csv.zip"
+```
