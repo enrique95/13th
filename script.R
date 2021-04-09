@@ -32,6 +32,13 @@ pathcb<- "nhgis0027_csv.zip"
 
 #uploading the csv datasets (do not add year after "ds*" otherwise it can't be easily copied and pasted)
 
+# yearlayers <- list(contains("ds9"),contains("ds10"),contains("ds13"),contains("ds14"), contains("ds16"),contains("ds17"),contains("ds22"),contains("ds23")
+
+years <- c("ds9","ds10","ds13","ds14","ds16","ds17","ds22","ds23")
+
+
+files <- mapply(read_nhgis(data_file = pathcsv), data_layer=contains(years) )
+print(files)
 
 csv1850a <- read_nhgis(data_file = pathcsv, data_layer=contains("ds9"))
 csv1850b <- read_nhgis(data_file = pathcsv, data_layer=contains("ds10"))
