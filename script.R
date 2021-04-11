@@ -1,24 +1,27 @@
 # Package installation
 install.packages("plm")
-library(plm)
 install.packages("stargazer")
-library(stargazer)
 install.packages("robustbase")
-library(robustbase)
-install.packages("dplyr")
-library(dplyr)
+install.packages("tidyverse")
 install.packages("lmtest")
-library(lmtest)
 install.packages("ipumsr")
-library(ipumsr)
 install.packages("rmarkdown")
-library(rmarkdown)
 install.packages("tesseract")
-library(tesseract)
 install.packages("pdftools")
-library(pdftools)
 install.packages("sf")
+
 library(sf)
+library(plm)
+library(stargazer)
+library(pdftools)
+library(rmarkdown)
+library(robustbase)
+library(tidyverse)
+library(lmtest)
+library(ipumsr)
+library(tesseract)
+
+
 # convert this into a rmd but first try with the .tex file
 #use pandoc_convert"thesis.tex", to= "markdown", output = "thesis.md", citeproc = TRUE) and try to add the .bib 
 # and see if it can load the bibliography too
@@ -32,13 +35,12 @@ pathcb<- "nhgis0027_csv.zip"
 
 #uploading the csv datasets (do not add year after "ds*" otherwise it can't be easily copied and pasted)
 
-# yearlayers <- list(contains("ds9"),contains("ds10"),contains("ds13"),contains("ds14"), contains("ds16"),contains("ds17"),contains("ds22"),contains("ds23")
 
-years <- c("ds9","ds10","ds13","ds14","ds16","ds17","ds22","ds23")
+layers <- c("ds9","ds10","ds13","ds14","ds16","ds17","ds22","ds23")
+years <- as.character(seq(1850,1880, by = 10))
 
 
-files <- mapply(read_nhgis(data_file = pathcsv), data_layer=contains(years) )
-print(files)
+csvfiles <- map(layers, ~ read_nhgis(data_file  = pathcsv, contains(.x)))
 
 csv1850a <- read_nhgis(data_file = pathcsv, data_layer=contains("ds9"))
 csv1850b <- read_nhgis(data_file = pathcsv, data_layer=contains("ds10"))
@@ -51,9 +53,16 @@ csv1880b <- read_nhgis(data_file = pathcsv, data_layer=contains("ds23"))
   
 #merging the csv datasets
 csv1850 <- left_join(csv1850a,csv1850b, by = "GISJOIN")
+csv1850alt <- left_join(csvfiles[[1]],csvfiles[[2]], by = "GISJOIN")
+
 csv1860 <- left_join(csv1860a,csv1860b, by = "GISJOIN")
+csv1860alt <- left_join(csvfiles[[3]],csvfiles[[4]], by = "GISJOIN")
+
 csv1870 <- left_join(csv1870a,csv1870b, by = "GISJOIN")
+csv1870alt <- left_join(csvfiles[[5]],csvfiles[[6]], by = "GISJOIN")
+
 csv1880 <- left_join(csv1880a,csv1880b, by = "GISJOIN")
+csv1880alt <- left_join(csvfiles[[7]],csvfiles[[8]], by = "GISJOIN")
 
 #uploading shape files
 shape1850 <-  read_ipums_sf(shape_file = pathshp, shape_layer = contains("1850"))
