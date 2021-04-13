@@ -51,12 +51,9 @@ csv1870 <- left_join(csvfiles[[5]],csvfiles[[6]], by = "GISJOIN")
 
 csv1880 <- left_join(csvfiles[[7]],csvfiles[[8]], by = "GISJOIN")
 
-#uploading shape files
-shape1850 <-  read_ipums_sf(shape_file = pathshp, shape_layer = contains("1850"))
-shape1860 <-  read_ipums_sf(shape_file = pathshp, shape_layer = contains("1860"))
-shape1870 <-  read_ipums_sf(shape_file = pathshp, shape_layer = contains("1870"))
-shape1880 <-  read_ipums_sf(shape_file = pathshp, shape_layer = contains("1880"))
+#uploading shape files with same loop as before
 
+shpfiles <- map(years, ~ read_ipums_sf(shape_file = pathshp, contains((.x))))
 
 #joining csv and shape
 data1850 <- ipums_shape_inner_join(data = csv1850,shape_data = shape1850, by = "GISJOIN", verbose=TRUE)
