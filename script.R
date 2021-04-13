@@ -37,30 +37,19 @@ pathcsv <- "nhgis0027_csv.zip"
 layers <- c("ds9","ds10","ds13","ds14","ds16","ds17","ds22","ds23")
 years <- as.character(seq(1850,1880, by = 10))
 
+# reading the data through a loop that runs the `read_nhgis` function
+# with the different layers in `data_layer=contains(X)`
 
 csvfiles <- map(layers, ~ read_nhgis(data_file  = pathcsv, contains(.x)))
 
-csv1850a <- read_nhgis(data_file = pathcsv, data_layer=contains("ds9"))
-csv1850b <- read_nhgis(data_file = pathcsv, data_layer=contains("ds10"))
-csv1860a <- read_nhgis(data_file = pathcsv, data_layer=contains("ds13"))
-csv1860b <- read_nhgis(data_file = pathcsv, data_layer=contains("ds14"))
-csv1870a <- read_nhgis(data_file = pathcsv, data_layer=contains("ds16"))
-csv1870b <- read_nhgis(data_file = pathcsv, data_layer=contains("ds17"))
-csv1880a <- read_nhgis(data_file = pathcsv, data_layer=contains("ds22"))
-csv1880b <- read_nhgis(data_file = pathcsv, data_layer=contains("ds23"))
-  
 #merging the csv datasets
-csv1850 <- left_join(csv1850a,csv1850b, by = "GISJOIN")
-csv1850alt <- left_join(csvfiles[[1]],csvfiles[[2]], by = "GISJOIN")
+csv1850 <- left_join(csvfiles[[1]],csvfiles[[2]], by = "GISJOIN")
 
-csv1860 <- left_join(csv1860a,csv1860b, by = "GISJOIN")
-csv1860alt <- left_join(csvfiles[[3]],csvfiles[[4]], by = "GISJOIN")
+csv1860 <- left_join(csvfiles[[3]],csvfiles[[4]], by = "GISJOIN")
 
-csv1870 <- left_join(csv1870a,csv1870b, by = "GISJOIN")
-csv1870alt <- left_join(csvfiles[[5]],csvfiles[[6]], by = "GISJOIN")
+csv1870 <- left_join(csvfiles[[5]],csvfiles[[6]], by = "GISJOIN")
 
-csv1880 <- left_join(csv1880a,csv1880b, by = "GISJOIN")
-csv1880alt <- left_join(csvfiles[[7]],csvfiles[[8]], by = "GISJOIN")
+csv1880 <- left_join(csvfiles[[7]],csvfiles[[8]], by = "GISJOIN")
 
 #uploading shape files
 shape1850 <-  read_ipums_sf(shape_file = pathshp, shape_layer = contains("1850"))
