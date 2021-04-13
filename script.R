@@ -31,10 +31,8 @@ library(tesseract)
 
 pathshp <- "nhgis0027_shape.zip"
 pathcsv <- "nhgis0027_csv.zip"
-pathcb<- "nhgis0027_csv.zip"
 
-#uploading the csv datasets (do not add year after "ds*" otherwise it can't be easily copied and pasted)
-
+# indicating layer identifiers for `read_nhgis*` functions
 
 layers <- c("ds9","ds10","ds13","ds14","ds16","ds17","ds22","ds23")
 years <- as.character(seq(1850,1880, by = 10))
