@@ -2,8 +2,6 @@
 title: "13th"
 author: "enrique95"
 date: '`r format(Sys.time(), "%m/%Y")`'
-#dedication: "I would like to thank Iván Logrosán for the initial idea, the UC3M for helping me through this journey of learning, the NHGIS workers for their help and resources and last but not least, the discoRd server, the aces of R in discord"
-
 output: md_document
 ---
 
@@ -16,7 +14,7 @@ I would like to thank Iván Logrosán for the initial idea, the UC3M for helping
 
 ## 1.1 Motivation of work and goals
 
-Slavery has been a very controversial topic that even nowadays has ramifications in many different sectors and markets, be "legal" but out of public scrutiny, or illegal, yet scarcely prosecuted. This project aims to analyze the effect of slavery and its abolition with the 13th Amendment on the agriculture through the use of agricultural, demographic and geographical data. The goal of this project is to analyze just the economic background. From the ethical background there is not much discussion regarding this topic than what it is already stablished for years.
+Slavery has been a very controversial topic that even nowadays has ramifications in many different sectors and markets, be "legal" but out of public scrutiny, or illegal, yet scarcely prosecuted. This project aims to analyze the effect of slavery and its abolition with the 13th Amendment on the agriculture through the use of agricultural, demographic and geographical data. The goal of this project is to analyze just the economic background. From the ethical background there is not much discussion regarding this topic than what it is already established for years.
 
 ## 1.2 Resources and data sources
 
@@ -29,26 +27,31 @@ The data will be analyzed through a Diff-in-diff model. This model is ideal for 
 # 2. Getting started
 ## 2.1 Packages
 
-First the packages necessary for reading and managing the data are installed and loaded
+First the packages necessary for reading and managing the data are installed and loaded. For dependency issues in Linux check the `linuxdep.sh` script
 
 ```{r}
 # Package installation
-install.packages("plm") #for panel data use 
-library(plm)
+install.packages("plm") #for panel data use
 install.packages("stargazer") #for building tables
-library(stargazer)
 install.packages("robustbase") #for heteroskedastic errors
-library(robustbase)
-install.packages("dplyr") #for data wrangling
-library(dplyr)
+install.packages("tidyverse") #for data wrangling
 install.packages("lmtest") #for testing heteroskedasticity 
-library(lmtest)
 install.packages("ipumsr") #for loading NHGIS data
-library(ipumsr)
 install.packages("rmarkdown") #for writing this .rmd file
-library(rmarkdown)
+install.packages("tesseract") #for reading images into text
+install.packages("pdftools") #for uploading pdf as image
 install.packages("sf") #for spatial data
+
 library(sf)
+library(plm)
+library(stargazer)
+library(pdftools)
+library(rmarkdown)
+library(robustbase)
+library(tidyverse)
+library(lmtest)
+library(ipumsr)
+library(tesseract)
 
 ```
 
