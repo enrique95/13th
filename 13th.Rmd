@@ -57,9 +57,42 @@ library(tesseract)
 
 ## 2.2 Loading the data
 
-First the relative paths are added so the `ipumsr` functions know the zip files from which can extract the data
+First the relative paths are added so the `read_nhgis`` functions know the zip files from which can read the data and the layers so the functions know which files from the zip can read 
 
 ```{r}
 pathshp <- "nhgis0027_shape.zip"
 pathcsv <- "nhgis0027_csv.zip"
+
+layers <- c("ds9","ds10","ds13","ds14","ds16","ds17","ds22","ds23")
+years <- as.character(seq(1850,1880, by = 10))
 ```
+
+Then the `read_nhgis` functions are added, looped to upload the 8 different .csv and 4 .shp files at once. 
+
+```{r}
+# reading the data through a loop that runs the `read_nhgis` function
+# with the different layers in `data_layer=contains(X)`
+
+csvfiles <- map(layers, ~ read_nhgis(data_file  = pathcsv, contains(.x)))
+
+#uploading shape files with same loop as before
+
+shpfiles <- map(years, ~ read_ipums_sf(shape_file = pathshp, contains((.x))))
+```
+
+And finally the merges, so the data corresponds to each year
+
+```{r}
+#merging the csv datasets
+csv1850 <- left_join(csvfiles[[1]],csvfiles[[2]], by = "GISJOIN")
+csv1860 <- left_join(csvfiles[[3]],csvfiles[[4]], by = "GISJOIN")
+csv1870 <- left_join(csvfiles[[5]],csvfiles[[6]], by = "GISJOIN")
+csv1880 <- left_join(csvfiles[[7]],csvfiles[[8]], by = "GISJOIN")
+
+#joining csv and shape
+data1850 <- ipums_shape_inner_join(data = csv1850,shape_data = shape1850, by = "GISJOIN", verbose=TRUE)
+data1860 <- ipums_shape_inner_join(data = csv1860,shape_data = shape1860, by = "GISJOIN", verbose=TRUE)
+data1870 <- ipums_shape_inner_join(data = csv1870,shape_data = shape1870, by = "GISJOIN", verbose=TRUE)
+data1880 <- ipums_shape_inner_join(data = csv1880,shape_data = shape1880, by = "GISJOIN", verbose=TRUE)
+```
+
