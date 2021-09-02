@@ -1,3 +1,4 @@
+#!/bin/bash
 # this script will install the dependencies you need 
 # to have in your linux machine in order to install 
 # all packages in R 
@@ -7,6 +8,38 @@
 
 # developing tools for building packages in case you don't have them in 
 # your minimalist distro
+
+#if [ -f /etc/os-release ]; then
+#    # freedesktop.org and systemd
+#    . /etc/os-release
+#    OS=$NAME
+#    VER=$VERSION_ID
+#elif type lsb_release >/dev/null 2>&1; then
+#    # linuxbase.org
+#    OS=$(lsb_release -si)
+#    VER=$(lsb_release -sr)
+#elif [ -f /etc/lsb-release ]; then
+#    # For some versions of Debian/Ubuntu without lsb_release command
+#    . /etc/lsb-release
+#    OS=$DISTRIB_ID
+#    VER=$DISTRIB_RELEASE
+#elif [ -f /etc/debian_version ]; then
+#    # Older Debian/Ubuntu/etc.
+#    OS=Debian
+#    VER=$(cat /etc/debian_version)
+#elif [ -f /etc/SuSe-release ]; then
+#    # Older SuSE/etc.
+#    ...
+#elif [ -f /etc/redhat-release ]; then
+#    # Older Red Hat, CentOS, etc.
+#    ...
+#else
+#    # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
+#    OS=$(uname -s)
+#    VER=$(uname -r)
+#fi
+
+#if $OS="Manjaro Linux" || "Endeavor OS" || "Arco OS"
 
 sudo pacman -S --noconfirm base-devel gcc-fortran yay
 
@@ -20,3 +53,5 @@ yay -S --noconfirm udunits
 
 sudo pacman -S --noconfirm base-devel tesseract tesseract-data-eng gdal gcc-fortran
 
+#else
+	#print("tell me what your distro is and which brand belongs to @ github.com/enrique95 so I add it to the script")
